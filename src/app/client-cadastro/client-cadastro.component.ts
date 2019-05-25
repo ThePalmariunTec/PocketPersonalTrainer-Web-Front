@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { STATES } from '../mock-states';
 import { Client } from '../models/client';
-import { User } from '../models/user';
 import { Roles } from '../models/roles';
-import { Address } from '../models/address';
-import { Person } from '../models/person';
+import { ClientService } from '../services/client-service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-client-cadastro',
@@ -15,20 +14,22 @@ export class ClientCadastroComponent{
 
   hide = true;
 
+  http: ClientService
+
   cadClientForm: FormGroup;
 
   estados = STATES;
   
-  person: Person;
   client: Client;
-  user: User;
-  roles: Roles;
-  address: Address;
+  roles:Roles = {
+    id: 1, name:"Common", desciption: "Regular User permission, Only app"
+  }
 
   senhaTemporaria: any;
 
   constructor(private formBuilder: FormBuilder){
     this.cadClientForm = this.formBuilder.group({
+    
       nome: '' ,
       cpf: '' ,
       rg: '',
@@ -38,6 +39,7 @@ export class ClientCadastroComponent{
       email: '',
       telefone: '',
       userName: ``
+    
     });
   }
 
@@ -45,7 +47,9 @@ export class ClientCadastroComponent{
   }
 
   generateForm(client){
+    
     this.cadClientForm = this.formBuilder.group({
+    
       nome:  client.person.nome ,
       cpf: client.person.cpf ,
       rg: client.person.rg,
@@ -55,26 +59,26 @@ export class ClientCadastroComponent{
       email: client.user.email,
       telefone: client.person.telefone,
       userName: client.user.userName
+    
     }); 
   }
 
   save(cadClientForm){
-    this.person.nome =  cadClientForm.nome
-    this.person.cpf =  cadClientForm.cpf
-    this.person.rg =  cadClientForm.rg
-    this.user.email =  cadClientForm.email
-    this.user.senha =  this.senhaTemporaria
-    this.user.userName = cadClientForm.userName
-    this.user.role  = this.roles
-    this.client.user = this.user
-    this.address.name = cadClientForm.endereco
-    this.address.city = cadClientForm.cidade
-    this.address.states = cadClientForm.estados
-    this.person.dataNascimento = cadClientForm.dataNascimento
-    this.person.telefone = cadClientForm.telefone
     
+    this.client.person.nome =  cadClientForm.nome
+    this.client.person.cpf =  cadClientForm.cpf
+    this.client.person.rg =  cadClientForm.rg
+    this.client.user.email =  cadClientForm.email
+    this.client.user.senha =  this.senhaTemporaria
+    this.client.user.userName = cadClientForm.userName
+    this.client.user.role  = this.roles
+    this.client.person.address.name = cadClientForm.endereco
+    this.client.person.address.city = cadClientForm.cidade
+    this.client.person.address.states = cadClientForm.estados
+    this.client.person.dataNascimento = cadClientForm.dataNascimento
+    this.client.person.telefone = cadClientForm.telefone
+    
+    this.http.create(this.client)
   }
-
-
 
 }

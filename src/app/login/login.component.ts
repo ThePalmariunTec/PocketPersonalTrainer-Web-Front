@@ -11,6 +11,8 @@ import { RedefinirSenhaDialogComponent } from '../dialogs/redefinir-senha-dialog
 })
 export class LoginComponent implements OnInit {
 
+  http: LoginService;
+
   loginForm: FormGroup;
 
   hide=true;
@@ -38,9 +40,7 @@ export class LoginComponent implements OnInit {
   }
 
   submir(form){
-    //consulta no DB
-    // academia = retorno do banco
-    //move pro menu principal 
+     
   }
 
 }

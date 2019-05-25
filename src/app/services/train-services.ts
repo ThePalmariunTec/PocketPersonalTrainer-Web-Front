@@ -8,24 +8,25 @@ import { Train } from '../models/train';
 export class TrainService {
 
   constructor(private http: HttpClient) { }
-  url="localhost:80/"
+  url="http://localhost/backend/public/api/pocketPersonalTrainer/train/"
+
   getAll() {
-    return this.http.get<Train[]>(this.url);
+    return this.http.get<Train[]>(this.url+'all');
   }
 
   getById(id: number) {
-    return this.http.get<Train>(this.url + '/' + id);
+    return this.http.get<Train>(this.url + 'exercise/' + id);
   }
 
-  create(academia: Train) {
-    return this.http.post(this.url, academia);
+  create(exercise: Train) {
+    return this.http.post(this.url + 'add', exercise);
   }
 
-  update(academia: Train) {
-    return this.http.put(this.url + '/' + academia.id, academia);
+  update(exercise: Train) {
+    return this.http.put(this.url + 'update/' + exercise.id, exercise);
   }
 
   delete(id: number) {
-    return this.http.delete(this.url + '/' + id);
+    return this.http.delete(this.url + 'delete/' + id);
   }
 }
