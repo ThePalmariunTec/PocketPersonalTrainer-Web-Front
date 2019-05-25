@@ -1,0 +1,109 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h5>Cadastro de funcionário</h5>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+  <button mat-button color="primary">
+    <mat-icon>check</mat-icon>
+    Salvar
+  </button>
+  <button mat-button (click)="alterar()">
+    <mat-icon>mode_edit</mat-icon>
+    Editar
+  </button>
+ </mat-card-content>
+</mat-card>
+<form class="formularios" [formGroup]="cadEmployForm">
+  <mat-form-field>
+    <input matInput formControlName="nome" type="text" placeholder="Nome" />
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput formControlName="endereco"  type="text" placeholder= "Endereço Ex.: Rua / Av." />
+  </mat-form-field>
+  <table class="half-width" cellspacing="1">
+    <tr>
+      <td>
+        <mat-form-field>
+          <input matInput formControlName="cidade" type="text" placeholder=" Cidade" />
+        </mat-form-field> 
+      </td>
+      <td>
+        <mat-form-field> 
+          <mat-label>Estatdo</mat-label>
+          <mat-select [(value)]="selected">
+            <mat-option *ngFor="let estado of estados" [value]="estado.value">
+              {{estado.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field>
+          <span matPrefix>(16) &nbsp;</span>
+          <input formControlName="telefone" type="tel" matInput placeholder="Telefone">
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field>
+          <input matInput formControlName="dataNascimento" [matDatepicker]="picker" placeholder="Data de Nascimento">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+  <mat-form-field>
+    <input matInput formControlName="email" type="email" placeholder="name@example.com">
+  </mat-form-field>
+  <table class="half-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field>
+          <mat-label>Quem é você?</mat-label>
+            <mat-select [(value)]="selected">
+              <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
+              {{tipo.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field >
+          <input matInput formControlName="cpf" type="text" placeholder="CPF">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field>
+          <input matInput formcontrolName="documento" placeholder="CREF/CTPS">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field>
+          <input matInput formControlName="rg" type="text" placeholder="RG">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field>
+          <input matInput formControlName="userName" placeholder="Nome de usuario">
+        </mat-form-field>
+      </td>
+      <td>   
+        <mat-form-field>
+          <input matInput formControlName="senha" placeholder="Senha Ex.: 1234" [type]="hide ? 'password' : 'text'">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </mat-form-field>
+      </td>
+      <td>   
+        <mat-form-field>
+          <input matInput formControlName="confSenha" placeholder="Confirmar a senha">
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+</form>   
+          

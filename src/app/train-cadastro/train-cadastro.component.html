@@ -1,0 +1,28 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h4>Cadastro de exercício</h4>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <button mat-button color="primary">
+      <mat-icon>check</mat-icon>
+      Salvar
+    </button>
+    <button mat-button>
+     <mat-icon>mode_edit</mat-icon>
+      Editar
+    </button>
+  </mat-card-content>
+</mat-card>
+<form class="formularios" [formGroup]="cadExercicioForm">
+  <mat-form-field>
+    <input matInput formControlName="nome" type="text" placeholder="Nome do exercício">
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput formControlName="descricao" type="text" placeholder="Descrição.."></textarea>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput formControlName="aparelho" type="text" placeholder="Nome do aparelho">
+  </mat-form-field>
+</form>

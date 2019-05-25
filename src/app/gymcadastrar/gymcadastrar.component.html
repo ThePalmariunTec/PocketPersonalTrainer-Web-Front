@@ -1,0 +1,32 @@
+<div class="jumbotron jumbotron-fluid">
+  <h1 class="justify-content-center" >Pocket Personal Trainer </h1>
+  <h2 class="justify-content-center lead">Cadastro de Usuário</h2>
+</div>
+<form class="formularios" [formGroup]="cadastroAcademiaForm">
+  <mat-form-field>
+    <input matInput formControlName="nome"  placeholder="Nome da Academia">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput formControlName="email" type="email" placeholder="name@example.com">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput formControlName="senha" placeholder="Senha" [type]="hide ? 'password' : 'text'">
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput formControlName="endereco" type="text" placeholder="Rua/Avenida , número">
+    </mat-form-field>
+  <mat-form-field>
+    <input matInput formControlName="cidade" type="text" placeholder="Cidade">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Estatdo</mat-label>
+    <mat-select [(value)]="selected">
+      <mat-option *ngFor="let estado of estados" [value]="estado.value">
+        {{estado.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
+<button mat-raised-button color="primary">Cadastrar</button>
+<button mat-raised-button (click)="goBack()">Cancelar</button>

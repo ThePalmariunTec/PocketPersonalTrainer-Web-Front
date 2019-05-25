@@ -1,0 +1,73 @@
+<div class="container-fluid">
+  <mat-card class="formMenu">
+    <mat-card-header>
+      <mat-card-title>
+        <h4>Relatório de Funcionário</h4>
+      </mat-card-title>
+      <span class="toolbarSpace"></span>
+      <button mat-mini-fab color="primary" class="iconSpace">
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Filtros  
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <form [formGroup]="formFiltroRelatorio">
+            <mat-form-field>
+              <mat-label> De: </mat-label>
+              <input matInput formControlName="dataInicio" [matDatepicker]="picker" placeholder="Escolha uma data">
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label> até:</mat-label>
+              <input matInput formControlName="dataFim" [matDatepicker]="picker2" placeholder="escolha uma data">
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+            <mat-checkbox formControlName="orderByCodigo" >Código</mat-checkbox>
+            <mat-checkbox formControlName="orderByNome">Nome</mat-checkbox>
+            <mat-checkbox formControlName="orderByDataNascimento">Data de nascimento</mat-checkbox>
+          </form>
+          <button mat-button (click)="filtrar(formFiltroRelatorio)">Filtrar</button>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card-content>
+  </mat-card>
+<!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+  </ng-container>
+  
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Nome </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+    
+
+  <ng-container matColumnDef="weight">
+    <th mat-header-cell *matHeaderCellDef> data de Nascimento </th>
+    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+  </ng-container>
+    
+  <tr mat-header-row *matHeaderRowDef="opçoes">
+    <button mat-button>
+      <mat-icon>mode_edit</mat-icon>
+      Editar
+    </button>
+    <button mat-button>
+      <mat-icon>close</mat-icon>
+      Excluir
+    </button>
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: opcoes;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+--> 
+</div>
